@@ -3,39 +3,39 @@
     until each half has a single element. It then merges the split arrays, 
     returns the merge, and continues up the recursive ladder until the whole sorted array is returned.  '''
 
-def merge_sort(array):
+def merge_sort(array):                      
 
-    if len(array) <= 1:
+    if len(array) <= 1:                         # return if single/empty
         return array
 
-    midpoint = int(len(array) / 2)
+    midpoint = int(len(array) / 2)              # middle of the array
 
-    left, right = merge_sort(array[:midpoint]), merge_sort(array[midpoint:])
+    left, right = merge_sort(array[:midpoint]), merge_sort(array[midpoint:])    # left =  everything up to midpoint, right = everything to end past midpoint
 
-    return merge(left, right)
+    return merge(left, right)                                                   # return merge() to be called later passing in ^^
 
 
 def merge(left, right):
 
-    result = []
-    left_pointer = right_pointer = 0
+    result = []                                 
+    left_pointer = right_pointer = 0         # also left/right index
 
-    while left_pointer < len(left) and right_pointer < len(right):
+    while left_pointer < len(left) and right_pointer < len(right):  # while there are both elements in BOTH arrays
 
-        if left[left_pointer] < right[right_pointer]:
+        if left[left_pointer] < right[right_pointer]:   # if element at left pointer in left array is less than right element at right pointer at right array... We know left ele is smaller
 
-            result.append(left[left_pointer])
+            result.append(left[left_pointer])           # append that smaller element so its sorted
             left_pointer += 1
 
         else:
 
-            result.append(right[right_pointer])
+            result.append(right[right_pointer])         # if element at right pointer in right array is smaller.. append it to the sorted array
             right_pointer += 1
 
-    result.extend(left[left_pointer:])
+    result.extend(left[left_pointer:])  # taking everything from left array, left pointer to end and extending it to result
     result.extend(right[right_pointer:])
 
-    return result
+    return result    # new sorted
 
 
 
